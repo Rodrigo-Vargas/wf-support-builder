@@ -24,8 +24,10 @@ class WFSupportBuilderPlugin {
    function require_files()
    {
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/hooks.php';
+      require_once WF_SUPPORT_BUILDER_PATH . 'includes/post-types.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/admin-menu.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/settings.php';
+      require_once WF_SUPPORT_BUILDER_PATH . 'includes/config.php';
    }
 
    function register_options()

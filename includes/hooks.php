@@ -5,6 +5,7 @@ class WFSupportBuilderHooks {
    
    function __construct()
    {
+      add_action( 'init', array( $this, 'wf_init' ) );
       add_action( 'admin_menu', array( $this, 'wf_admin_menu' ) );
       add_action( 'admin_init', array( $this, 'wf_admin_init' ) );
    }
@@ -12,6 +13,11 @@ class WFSupportBuilderHooks {
    function wf_admin_init()
    {
       WFSupportBuilderSettings::get_instance()->register();  
+   }
+
+   function wf_init()
+   {
+      WFSupportBuilderPostTypes::get_instance()->register();
    }
 
    function wf_admin_menu()
