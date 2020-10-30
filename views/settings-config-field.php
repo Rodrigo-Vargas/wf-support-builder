@@ -1,0 +1,1 @@
+<textarea name="wf_support_builder_config" id="wf_support_builder_config" rows="15" cols="50"><?php echo $config ?></textarea>
