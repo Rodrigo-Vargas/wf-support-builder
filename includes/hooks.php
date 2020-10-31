@@ -8,6 +8,7 @@ class WFSupportBuilderHooks {
       add_action( 'init', array( $this, 'wf_init' ) );
       add_action( 'admin_menu', array( $this, 'wf_admin_menu' ) );
       add_action( 'admin_init', array( $this, 'wf_admin_init' ) );
+      add_action( 'enqueue_block_editor_assets', array( $this, 'wf_enqueue_block_editor_assets' ) );
    }
 
    function wf_admin_init()
@@ -23,6 +24,11 @@ class WFSupportBuilderHooks {
    function wf_admin_menu()
    {
       WFSupportBuilderAdminMenu::get_instance()->register_menu_items();
+   }
+
+   function wf_enqueue_block_editor_assets()
+   {
+      WFSupportBuilderBlocks::get_instance()->enqueue_assets();
    }
 
    public static function get_instance()
