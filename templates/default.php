@@ -1,0 +1,1 @@
+That is a default template! You should create your on templates/wf_support_builder folder of your theme
