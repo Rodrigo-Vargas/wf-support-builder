@@ -19,6 +19,7 @@ class WFSupportBuilderHooks {
    function wf_init()
    {
       WFSupportBuilderPostTypes::get_instance()->register();
+      WFSupportBuilderBlocks::get_instance()->register_block();      
    }
 
    function wf_admin_menu()
@@ -28,7 +29,7 @@ class WFSupportBuilderHooks {
 
    function wf_enqueue_block_editor_assets()
    {
-      WFSupportBuilderBlocks::get_instance()->enqueue_assets();
+      WFSupportBuilderBlocks::get_instance()->enqueue_list_block_assets(); 
    }
 
    public static function get_instance()
