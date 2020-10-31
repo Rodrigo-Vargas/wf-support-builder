@@ -34,7 +34,7 @@ class WFSupportBuilderPostTypes {
          'rewrite'         => array( 'slug' => $post_type_config->slug, ), // Permalinks format
          'menu_position'   => 5,
          'menu_icon'       => ( version_compare( $GLOBALS['wp_version'], '3.8', '>=' ) ) ? 'dashicons-hammer' : false ,
-         'has_archive'     => true,
+         'has_archive'     => false,
          'show_in_rest'    => true,
       );
 
