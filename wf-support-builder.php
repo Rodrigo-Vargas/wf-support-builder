@@ -27,11 +27,12 @@ class WFSupportBuilderPlugin {
    {
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/admin-menu.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/blocks.php';
+      require_once WF_SUPPORT_BUILDER_PATH . 'includes/config.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/hooks.php';
+      require_once WF_SUPPORT_BUILDER_PATH . 'includes/metaboxes.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/model.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/post-types.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/settings.php';
-      require_once WF_SUPPORT_BUILDER_PATH . 'includes/config.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/store.php';
    }
 

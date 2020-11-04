@@ -24,7 +24,7 @@ class WFSupportBuilderPostTypes {
          'menu_name'             => $post_type_config->display_name
       );
 
-      $supports = array();
+      $supports = $post_type_config->supports;
 
       $args = array(
          'labels'          => $labels,
@@ -39,6 +39,20 @@ class WFSupportBuilderPostTypes {
       );
 
       return $args;
+   }
+
+   public function handle_save_post( $post_id )
+   {
+      $fields_data;
+
+      foreach($_POST['wf_support_builder_fields'] as $key => $value)
+         $fields_data[$key] = $value;
+
+      update_post_meta(
+         $post_id,
+         'wf_support_builder_custom_fields',
+         json_encode( $fields_data )
+     );
    }
 
    public static function get_instance()
