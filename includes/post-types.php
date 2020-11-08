@@ -68,7 +68,7 @@ class WFSupportBuilderPostTypes {
          'show_ui'           => true,
          'show_tagcloud'     => true,
          'hierarchical'      => true,
-         'rewrite'           => array( 'slug' => $taxonomy->name ),
+         'rewrite'           => array( 'slug' => $taxonomy_config->name ),
          'show_admin_column' => true,
          'query_var'         => true,
          'show_in_rest'      => true,
