@@ -34,6 +34,7 @@ class WFSupportBuilderPlugin {
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/post-types.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/settings.php';
       require_once WF_SUPPORT_BUILDER_PATH . 'includes/store.php';
+      require_once WF_SUPPORT_BUILDER_PATH . 'includes/templates.php';
    }
 
    function register_options()

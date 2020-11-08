@@ -23,11 +23,14 @@ class WFSupportBuilderBlocks {
       $config = WFSupportBuilderConfig::get_instance()->get();
       $post_types = $config->post_types;
 
+      $templates = WFSupportBuilderTemplates::get_instance()->get_all();
+
       wp_localize_script(
 			'wf-support-builder-block-js',
 			'wf_support_builder_global_variables',
 			array(
-				'post_types'             => $post_types,
+            'post_types'             => $post_types,
+            'templates'              => $templates
 			)
 		);
    }
@@ -66,10 +69,10 @@ class WFSupportBuilderBlocks {
 
       ob_start();
       set_query_var($attributes['postTypeId'], $items);
-      $template_location = $this->get_template_file($attributes['template'] . '.php');      
+      $template_location = WFSupportBuilderTemplates::get_instance()->get_template_file($attributes['template'] . '.php');      
 
       if (!$template_location)
-         $template_location = $this->get_template_file('default.php');
+         $template_location = WFSupportBuilderTemplates::get_instance()->get_template_file('default.php');
 
       load_template( $template_location['path'] );
 
@@ -77,49 +80,6 @@ class WFSupportBuilderBlocks {
       ob_end_clean();
 
       return !empty($output_string) ? $output_string : null;
-   }
-
-   private function get_template_file($filename) {
-      $located = false;
-
-      $possible_locations = $this->get_locations();
-
-      foreach ( $possible_locations as $location ) {
-         $path = trailingslashit( $location['path'] );
-         if ( file_exists( $path . $filename ) ) {
-            $located = array(
-               'path' => $path . $filename,
-               'url'  => trailingslashit( $location['url'] ) . $filename
-            );
-            break;
-         }
-      }
-
-      return $located;
-   }
-
-   protected function get_locations() {
-      $locations = array(
-         10  => array(
-            'path' => trailingslashit( get_template_directory() ) . 'templates/' . WF_SUPPORT_BUILDER_SLUG,
-            'url'  => trailingslashit( get_template_directory_uri() ) . 'templates/' . WF_SUPPORT_BUILDER_SLUG 
-         ),
-         1000 => array(
-            'path' => trailingslashit( WF_SUPPORT_BUILDER_PATH ) . 'templates',
-            'url'  => trailingslashit( WF_SUPPORT_BUILDER_URL ) . 'templates'
-         )
-      );
-
-      if ( is_child_theme() ) {
-         $locations[1] = array(
-            'path' => trailingslashit( get_stylesheet_directory() ) . 'templates/' . WF_SUPPORT_BUILDER_SLUG,
-            'url'  => trailingslashit( get_stylesheet_directory_uri() ) . 'templates/' . WF_SUPPORT_BUILDER_SLUG 
-         );
-      }
-
-      ksort( $locations, SORT_NUMERIC );
-
-      return $locations;
    }
 
    public static function get_instance() {
