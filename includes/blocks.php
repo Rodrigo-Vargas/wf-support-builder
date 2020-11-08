@@ -45,6 +45,9 @@ class WFSupportBuilderBlocks {
          'className' => array(
             'type' => 'string'
          ),
+         'itemsLimit' => array(
+            'type' => 'number'
+         ),
          'template' => array(
             'type' => 'string'
          ),
@@ -63,6 +66,9 @@ class WFSupportBuilderBlocks {
 
    public function render_block( $attributes ) {
       $items = WFSupportBuilderStore::get_instance()->get_all($attributes['postTypeId']);
+
+      if (isset($attributes['itemsLimit']) && intval($attributes['itemsLimit']) > 0)
+         $items = array_slice($items, 0, intval($attributes['itemsLimit']));
 
       if (!isset($attributes['template']))
          $attributes['template'] = $attributes['postTypeId'];
