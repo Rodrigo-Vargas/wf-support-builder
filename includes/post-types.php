@@ -12,6 +12,20 @@ class WFSupportBuilderPostTypes {
 
          register_post_type( $post_type->name, $post_type_args );
 
+         if (isset($post_type->taxonomies))
+         {
+            foreach($post_type->taxonomies as $taxonomy)
+            {
+               $taxonomy_args = $this->build_taxonomy_args($taxonomy);
+
+               register_taxonomy(
+                  $taxonomy->name,
+                  $post_type->name,
+                  $taxonomy_args
+               );
+            }
+         }
+
          global $wp_rewrite;
          $wp_rewrite->flush_rules( true );
       }     
@@ -39,6 +53,28 @@ class WFSupportBuilderPostTypes {
       );
 
       return $args;
+   }
+
+   private function build_taxonomy_args($taxonomy_config)
+   {
+      $labels = array(
+         'name'                       => $taxonomy_config->display_name
+      );
+
+      $args = array(
+         'labels'            => $labels,
+         'public'            => true,
+         'show_in_nav_menus' => true,
+         'show_ui'           => true,
+         'show_tagcloud'     => true,
+         'hierarchical'      => true,
+         'rewrite'           => array( 'slug' => $taxonomy->name ),
+         'show_admin_column' => true,
+         'query_var'         => true,
+         'show_in_rest'      => true,
+      );
+
+      return $args;   
    }
 
    public function handle_save_post( $post_id )
