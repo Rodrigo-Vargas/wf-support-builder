@@ -23,7 +23,7 @@ class WFSupportBuilderModel
       {
          foreach($post_type_config->taxonomies as $taxonomy)
          {
-            $this->{$taxonomy->name} = get_terms($taxonomy->name);
+            $this->{$taxonomy->name} = wp_get_post_terms($wp_post->ID, $taxonomy->name);
          }         
       }
       
