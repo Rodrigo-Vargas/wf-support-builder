@@ -1,7 +1,8 @@
 module.exports = {
    mode: 'development',
    entry: {
-      'blocks.build': './src/index.js'
+      'blocks.build': './src/index.js',
+      'fields.build': './src/fields.js'
    },
    output: {
       path: __dirname + '/dist'

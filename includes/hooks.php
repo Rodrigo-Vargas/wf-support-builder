@@ -9,6 +9,7 @@ class WFSupportBuilderHooks {
       add_action( 'admin_menu', array( $this, 'wf_admin_menu' ) );
       add_action( 'add_meta_boxes', array($this,'wf_add_meta_boxes') );
       add_action( 'admin_init', array( $this, 'wf_admin_init' ) );
+      add_action( 'admin_enqueue_scripts', array( $this, 'wf_admin_enqueue_scripts' ) );
       add_action( 'enqueue_block_editor_assets', array( $this, 'wf_enqueue_block_editor_assets' ) );
       add_action( 'save_post', array($this, 'wf_save_post') );
    }
@@ -16,6 +17,14 @@ class WFSupportBuilderHooks {
    function wf_admin_init()
    {
       WFSupportBuilderSettings::get_instance()->register();  
+   }
+
+   function wf_admin_enqueue_scripts()
+   {
+      $js_url = WF_SUPPORT_BUILDER_URL . '/frontend/dist/fields.build.js';
+
+      wp_register_script('wf-support-builder-custom-fields', $js_url, array(), '1.0.0', true);
+      wp_enqueue_script('wf-support-builder-custom-fields'); 
    }
 
    function wf_init()

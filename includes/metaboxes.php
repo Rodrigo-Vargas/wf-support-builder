@@ -11,6 +11,9 @@ class WFSupportBuilderMetaboxes {
       {
          if ($post_type->name !== $current_post_type)
             continue;
+
+         if (count($post_type->custom_fields) == 0)
+            continue;
          
          add_meta_box(
             'wfservices_box_id',
@@ -32,7 +35,14 @@ class WFSupportBuilderMetaboxes {
 
       foreach($context['args'][0] as $custom_field)
       {
-         include WF_SUPPORT_BUILDER_PATH . '/views/metaboxes/field.php';
+         switch($custom_field->type)
+         {
+            case "media":
+               include WF_SUPPORT_BUILDER_PATH . '/views/metaboxes/media.php';
+               break;
+            default:
+               include WF_SUPPORT_BUILDER_PATH . '/views/metaboxes/field.php';
+         }
       }      
    }
 
