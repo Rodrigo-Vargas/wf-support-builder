@@ -1,0 +1,34 @@
+$white: #ffffff;
+$red:  #e02626;
+
+.components-placeholder {
+   box-sizing: border-box;
+   min-height: 0 !important;
+}
+
+.wf-support-builder-field {
+   .components-placeholder__fieldset {
+      display: flex;
+      flex-direction: row !important;
+   }
+
+   .uploaded-images {
+      .thumbnail {
+         padding: 10px;
+         position: relative;
+         width: 20%;
+
+         .btn-remove-image {
+            background-color:$red;
+            position: absolute;
+            right: 13px;
+            top: 13px;
+
+            .dashicons {
+               color: $white;
+               position: static;
+            }
+         }
+      }
+   }
+}

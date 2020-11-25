@@ -1,0 +1,21 @@
+.components-placeholder {
+  box-sizing: border-box;
+  min-height: 0 !important; }
+
+.wf-support-builder-field .components-placeholder__fieldset {
+  display: flex;
+  flex-direction: row !important; }
+
+.wf-support-builder-field .uploaded-images .thumbnail {
+  padding: 10px;
+  position: relative;
+  width: 20%; }
+  .wf-support-builder-field .uploaded-images .thumbnail .btn-remove-image {
+    background-color: #e02626;
+    position: absolute;
+    right: 13px;
+    top: 13px; }
+    .wf-support-builder-field .uploaded-images .thumbnail .btn-remove-image .dashicons {
+      color: #ffffff;
+      position: static; }
+

@@ -24,7 +24,11 @@ class WFSupportBuilderHooks {
       $js_url = WF_SUPPORT_BUILDER_URL . '/frontend/dist/fields.build.js';
 
       wp_register_script('wf-support-builder-custom-fields', $js_url, array(), '1.0.0', true);
-      wp_enqueue_script('wf-support-builder-custom-fields'); 
+      wp_enqueue_script('wf-support-builder-custom-fields');
+
+      $css_url = WF_SUPPORT_BUILDER_URL . '/frontend/dist/style.css';
+
+      wp_enqueue_style('wf-support-builder-custom-fields', $css_url, array());
    }
 
    function wf_init()
