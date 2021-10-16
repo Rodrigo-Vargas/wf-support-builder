@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class WFSupportBuilderPostTypes {
    public static $instance;
@@ -28,7 +28,7 @@ class WFSupportBuilderPostTypes {
 
          global $wp_rewrite;
          $wp_rewrite->flush_rules( true );
-      }     
+      }
    }
 
    private function build_post_type_args($post_type_config)
@@ -74,7 +74,7 @@ class WFSupportBuilderPostTypes {
          'show_in_rest'      => true,
       );
 
-      return $args;   
+      return $args;
    }
 
    public function handle_save_post( $post_id )
@@ -87,7 +87,7 @@ class WFSupportBuilderPostTypes {
       update_post_meta(
          $post_id,
          'wf_support_builder_custom_fields',
-         json_encode( $fields_data )
+         json_encode( $fields_data, JSON_UNESCAPED_UNICODE )
      );
    }
 
