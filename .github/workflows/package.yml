@@ -1,0 +1,27 @@
+name: paclage
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Building package
+        run: |
+          npm install
+          npm run publish
+
+      - name: Uploading in Github artifactory
+        uses: actions/upload-artifact@v2
+        with:
+          name: package
+          path: publish
