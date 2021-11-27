@@ -23,5 +23,5 @@ jobs:
       - name: Uploading in Github artifactory
         uses: actions/upload-artifact@v2
         with:
-          name: package
+          name: wf-support-builder
           path: publish

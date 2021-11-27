@@ -11,7 +11,7 @@ class WFSupportBuilderBlocks {
          'wp-editor'
       );
 
-      $js_url = WF_SUPPORT_BUILDER_URL . '/frontend/dist/blocks.build.js';
+      $js_url = WF_SUPPORT_BUILDER_URL . '/dist/blocks.build.js';
 
       wp_enqueue_script(
          'wf-support-builder-block-js',
