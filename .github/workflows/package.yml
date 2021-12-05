@@ -21,7 +21,7 @@ jobs:
           node -v
           echo "Yarn version"
           yarn -v
-          yarn install
+          yarn
           yarn run publish
 
       - name: Uploading in Github artifactory
