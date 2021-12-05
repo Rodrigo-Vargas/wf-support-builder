@@ -15,15 +15,30 @@ class Gallery extends Component {
 
       this.onImageSelected = this.onImageSelected.bind(this);
       this.removeImage = this.removeImage.bind(this);
+      this.handleError = this.handleError.bind(this);
    }
    
    onImageSelected(media) {
       let images = this.state.images;
-      images.push({
-         url: media.url,
-         id: media.id,
-         title: media.title
-      });
+
+      if (media.url.indexOf("blob:") < 0) {
+
+         // Remove one loading item
+         const selectedIndex = images.findIndex((element) => element.loading);
+
+         images.splice(selectedIndex, 1);
+
+         images.push({
+            url: media.url,
+            id: media.id,
+            title: media.title
+         });   
+      }
+      else {
+         images.push({
+            loading: true
+         })
+      }
 
       this.setState({
          images
@@ -47,16 +62,28 @@ class Gallery extends Component {
       });
    }
 
+   handleError(props) {
+      alert("Error!");
+      console.log(props);
+   }
+
    render() {
       const images = this.state.images.map(image => {
-         return(
-            <div className="thumbnail">
-               <img src={ image.url } alt={ image.title } />
-               <div className="btn-remove-image">
-                  <a href="#" class="dashicons dashicons-trash" onClick={ () => this.removeImage(image.id) }></a>
+         if (image.loading)
+            return (
+               <div class="loading">
+                  <span>Aguarde, carregando Imagem...</span>
                </div>
-            </div>
-         )
+            );
+         else
+            return (
+               <div className="thumbnail">
+                  <img src={ image.url } alt={ image.title } />
+                  <div className="btn-remove-image">
+                     <a href="#" class="dashicons dashicons-trash" onClick={ () => this.removeImage(image.id) }></a>
+                  </div>
+               </div>
+            );
       });
 
       return (
@@ -65,7 +92,7 @@ class Gallery extends Component {
                { images }
             </div>
 
-            <MediaPlaceholder onSelect={ this.onImageSelected } />
+            <MediaPlaceholder onSelect={ this.onImageSelected } handleError={ this.onError } onSelectUrl={ this.onImageUrlSelected } />
          </div>
       );
    }

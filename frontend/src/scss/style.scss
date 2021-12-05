@@ -13,6 +13,8 @@ $red:  #e02626;
    }
 
    .uploaded-images {
+      display: flex;
+
       .thumbnail {
          padding: 10px;
          position: relative;
