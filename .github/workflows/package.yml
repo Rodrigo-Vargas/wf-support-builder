@@ -17,8 +17,12 @@ jobs:
 
       - name: Building package
         run: |
-          npm install
-          npm run publish
+          echo "Node version"
+          node -v
+          echo "Yarn version"
+          yarn -v
+          yarn install
+          yarn run publish
 
       - name: Uploading in Github artifactory
         uses: actions/upload-artifact@v2
