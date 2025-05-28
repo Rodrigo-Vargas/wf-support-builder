@@ -1,4 +1,4 @@
-name: paclage
+name: package
 
 on:
   push:
@@ -13,19 +13,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
 
       - name: Building package
         run: |
+          set -e
+          echo "Node version: $(node -v)"
+          echo "Yarn version: $(yarn -v)"
           echo "Node version"
-          node -v
-          echo "Yarn version"
-          yarn -v
-          yarn
+          yarn install
           yarn run publish
+          ls -la publish
 
       - name: Uploading in Github artifactory
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: wf-support-builder
           path: publish
